@@ -38,6 +38,7 @@ require_once "../../elements/admin/sidebar.php";
                                 <td>Qual as tags de abertura de php comumente utilizadas?</td>
                                 <td>
                                     <a href="view.php" class="btn btn-default btn-xs" title="Ver"><i class="fa fa-eye"></i></a>
+                                    <button href="#" class="btn btn-danger btn-xs" title="Excluir"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                             <tr>
@@ -45,6 +46,7 @@ require_once "../../elements/admin/sidebar.php";
                                 <td>Qual o atributo css que define cor de background?</td>
                                 <td>
                                     <a href="view.php" class="btn btn-default btn-xs" title="Ver"><i class="fa fa-eye"></i></a>
+                                    <button href="#" class="btn btn-danger btn-xs" title="Excluir"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                             <tr>
@@ -52,6 +54,7 @@ require_once "../../elements/admin/sidebar.php";
                                 <td>Qual a tag html responsável pela definição de título da página?</td>
                                 <td>
                                     <a href="view.php" class="btn btn-default btn-xs" title="Ver"><i class="fa fa-eye"></i></a>
+                                    <button href="#" class="btn btn-danger btn-xs" title="Excluir"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                             <tr>
@@ -59,6 +62,7 @@ require_once "../../elements/admin/sidebar.php";
                                 <td>Como declarar uma variável em php?</td>
                                 <td>
                                     <a href="view.php" class="btn btn-default btn-xs" title="Ver"><i class="fa fa-eye"></i></a>
+                                    <button href="#" class="btn btn-danger btn-xs" title="Excluir"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         </table>
