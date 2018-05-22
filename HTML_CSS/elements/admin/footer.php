@@ -1,11 +1,3 @@
-<footer class="main-footer">
-  <div class="pull-right hidden-xs">
-    <b>Version</b> 2.4.0
-  </div>
-  <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-  reserved.
-</footer>
-
 </div>
 <!-- ./wrapper -->
 
@@ -21,6 +13,8 @@
 <script src="../../vendor/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../vendor/dist/js/demo.js"></script>
+<script src="../../vendor/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+
 <script>
 $(document).ready(function () {
   $('.sidebar-menu').tree()
