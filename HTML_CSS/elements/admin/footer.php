@@ -1,5 +1,4 @@
 </div>
-<!-- ./wrapper -->
 
 <!-- jQuery 3 -->
 <script src="../../vendor/bower_components/jquery/dist/jquery.min.js"></script>

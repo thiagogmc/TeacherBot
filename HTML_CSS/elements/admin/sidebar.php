@@ -22,8 +22,7 @@
             <li><a href="../<?=$tabela?>/add.php"><i class="fa fa-circle-o"></i> Cadastrar</a></li>
           </ul>
         </li>
-      <?php endforeach; ?>      
+      <?php endforeach; ?>
     </ul>
   </section>
-  <!-- /.sidebar -->
 </aside>
