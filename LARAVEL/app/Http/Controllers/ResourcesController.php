@@ -8,7 +8,7 @@ use tb\Http\Controllers\Controller;
 use tb\;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class ResourcesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,12 +21,12 @@ class UsersController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $users = ::latest()->paginate($perPage);
+            $resources = ::latest()->paginate($perPage);
         } else {
-            $users = ::latest()->paginate($perPage);
+            $resources = ::latest()->paginate($perPage);
         }
 
-        return view('users.index', compact('users'));
+        return view('resources.index', compact('resources'));
     }
 
     /**
@@ -36,7 +36,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('resources.create');
     }
 
     /**
@@ -53,7 +53,7 @@ class UsersController extends Controller
         
         ::create($requestData);
 
-        return redirect('users')->with('flash_message', ' added!');
+        return redirect('resources')->with('flash_message', ' added!');
     }
 
     /**
@@ -65,9 +65,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = ::findOrFail($id);
+        $resource = ::findOrFail($id);
 
-        return view('users.show', compact('user'));
+        return view('resources.show', compact('resource'));
     }
 
     /**
@@ -79,9 +79,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = ::findOrFail($id);
+        $resource = ::findOrFail($id);
 
-        return view('users.edit', compact('user'));
+        return view('resources.edit', compact('resource'));
     }
 
     /**
@@ -97,10 +97,10 @@ class UsersController extends Controller
         
         $requestData = $request->all();
         
-        $user = ::findOrFail($id);
-        $user->update($requestData);
+        $resource = ::findOrFail($id);
+        $resource->update($requestData);
 
-        return redirect('users')->with('flash_message', ' updated!');
+        return redirect('resources')->with('flash_message', ' updated!');
     }
 
     /**
@@ -114,6 +114,6 @@ class UsersController extends Controller
     {
         ::destroy($id);
 
-        return redirect('users')->with('flash_message', ' deleted!');
+        return redirect('resources')->with('flash_message', ' deleted!');
     }
 }

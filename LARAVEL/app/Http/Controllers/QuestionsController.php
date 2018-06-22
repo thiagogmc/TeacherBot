@@ -8,7 +8,7 @@ use tb\Http\Controllers\Controller;
 use tb\;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class QuestionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,12 +21,12 @@ class UsersController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $users = ::latest()->paginate($perPage);
+            $questions = ::latest()->paginate($perPage);
         } else {
-            $users = ::latest()->paginate($perPage);
+            $questions = ::latest()->paginate($perPage);
         }
 
-        return view('users.index', compact('users'));
+        return view('questions.index', compact('questions'));
     }
 
     /**
@@ -36,7 +36,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('questions.create');
     }
 
     /**
@@ -53,7 +53,7 @@ class UsersController extends Controller
         
         ::create($requestData);
 
-        return redirect('users')->with('flash_message', ' added!');
+        return redirect('questions')->with('flash_message', ' added!');
     }
 
     /**
@@ -65,9 +65,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = ::findOrFail($id);
+        $question = ::findOrFail($id);
 
-        return view('users.show', compact('user'));
+        return view('questions.show', compact('question'));
     }
 
     /**
@@ -79,9 +79,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = ::findOrFail($id);
+        $question = ::findOrFail($id);
 
-        return view('users.edit', compact('user'));
+        return view('questions.edit', compact('question'));
     }
 
     /**
@@ -97,10 +97,10 @@ class UsersController extends Controller
         
         $requestData = $request->all();
         
-        $user = ::findOrFail($id);
-        $user->update($requestData);
+        $question = ::findOrFail($id);
+        $question->update($requestData);
 
-        return redirect('users')->with('flash_message', ' updated!');
+        return redirect('questions')->with('flash_message', ' updated!');
     }
 
     /**
@@ -114,6 +114,6 @@ class UsersController extends Controller
     {
         ::destroy($id);
 
-        return redirect('users')->with('flash_message', ' deleted!');
+        return redirect('questions')->with('flash_message', ' deleted!');
     }
 }
