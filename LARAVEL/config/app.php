@@ -165,6 +165,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Appzcoder\CrudGenerator\CrudGeneratorServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        JeroenNoten\LaravelAdminLte\ServiceProvider::class,
         /*
          * Package Service Providers...
          */
