@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 2',
+    'title' => 'Teacher Bot',
 
     'title_prefix' => '',
 
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'blue',
+    'skin' => 'yellow',
 
     /*
     |--------------------------------------------------------------------------

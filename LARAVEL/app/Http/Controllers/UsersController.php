@@ -4,9 +4,10 @@ namespace tb\Http\Controllers;
 
 use tb\Http\Requests;
 use tb\Http\Controllers\Controller;
+use tb\User;
 
-use tb\;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -21,10 +22,11 @@ class UsersController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $users = ::latest()->paginate($perPage);
+            // $users = DB::latest()->paginate($perPage);
         } else {
-            $users = ::latest()->paginate($perPage);
+            // $users = DB::latest()->paginate($perPage);
         }
+        $users = User::all();
 
         return view('users.index', compact('users'));
     }
@@ -48,10 +50,10 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
-        ::create($requestData);
+
+        Request::create($requestData);
 
         return redirect('users')->with('flash_message', ' added!');
     }
@@ -65,7 +67,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = ::findOrFail($id);
+        $user = Request::findOrFail($id);
 
         return view('users.show', compact('user'));
     }
@@ -79,7 +81,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = ::findOrFail($id);
+        $user = Request::findOrFail($id);
 
         return view('users.edit', compact('user'));
     }
@@ -94,10 +96,10 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
-        $user = ::findOrFail($id);
+
+        $user = Request::findOrFail($id);
         $user->update($requestData);
 
         return redirect('users')->with('flash_message', ' updated!');
@@ -112,7 +114,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        ::destroy($id);
+        Request::destroy($id);
 
         return redirect('users')->with('flash_message', ' deleted!');
     }
