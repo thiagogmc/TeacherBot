@@ -18,15 +18,9 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
         $perPage = 25;
 
-        if (!empty($keyword)) {
-            // $users = DB::latest()->paginate($perPage);
-        } else {
-            // $users = DB::latest()->paginate($perPage);
-        }
-        $users = User::all();
+        $users = User::latest()->paginate($perPage);
 
         return view('users.index', compact('users'));
     }
@@ -53,7 +47,7 @@ class UsersController extends Controller
 
         $requestData = $request->all();
 
-        Request::create($requestData);
+        User::create($requestData);
 
         return redirect('users')->with('flash_message', ' added!');
     }
@@ -67,7 +61,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = Request::findOrFail($id);
+        $user = User::findOrFail($id);
 
         return view('users.show', compact('user'));
     }
@@ -81,7 +75,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = Request::findOrFail($id);
+        $user = User::findOrFail($id);
 
         return view('users.edit', compact('user'));
     }
@@ -99,7 +93,7 @@ class UsersController extends Controller
 
         $requestData = $request->all();
 
-        $user = Request::findOrFail($id);
+        $user = User::findOrFail($id);
         $user->update($requestData);
 
         return redirect('users')->with('flash_message', ' updated!');
@@ -114,7 +108,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        Request::destroy($id);
+        User::destroy($id);
 
         return redirect('users')->with('flash_message', ' deleted!');
     }
