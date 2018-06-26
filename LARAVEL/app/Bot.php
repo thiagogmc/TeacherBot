@@ -11,7 +11,7 @@ class Bot extends Model
      *
      * @var string
      */
-    protected $table = 'Bot';
+    protected $table = 'bots';
 
     /**
     * The database primary key value.
@@ -27,5 +27,5 @@ class Bot extends Model
      */
     protected $fillable = ['name'];
 
-    
+
 }

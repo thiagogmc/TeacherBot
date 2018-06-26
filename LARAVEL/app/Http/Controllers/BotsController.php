@@ -5,7 +5,7 @@ namespace tb\Http\Controllers;
 use tb\Http\Requests;
 use tb\Http\Controllers\Controller;
 
-use tb\;
+use tb\Bot;
 use Illuminate\Http\Request;
 
 class BotsController extends Controller
@@ -21,9 +21,9 @@ class BotsController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $bots = ::latest()->paginate($perPage);
+            $bots = Bot::latest()->paginate($perPage);
         } else {
-            $bots = ::latest()->paginate($perPage);
+            $bots = Bot::latest()->paginate($perPage);
         }
 
         return view('bots.index', compact('bots'));
@@ -48,10 +48,10 @@ class BotsController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
-        ::create($requestData);
+
+        Bot::create($requestData);
 
         return redirect('bots')->with('flash_message', ' added!');
     }
@@ -65,7 +65,7 @@ class BotsController extends Controller
      */
     public function show($id)
     {
-        $bot = ::findOrFail($id);
+        $bot = Bot::findOrFail($id);
 
         return view('bots.show', compact('bot'));
     }
@@ -79,7 +79,7 @@ class BotsController extends Controller
      */
     public function edit($id)
     {
-        $bot = ::findOrFail($id);
+        $bot = Bot::findOrFail($id);
 
         return view('bots.edit', compact('bot'));
     }
@@ -94,10 +94,10 @@ class BotsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
-        $bot = ::findOrFail($id);
+
+        $bot = Bot::findOrFail($id);
         $bot->update($requestData);
 
         return redirect('bots')->with('flash_message', ' updated!');
@@ -112,7 +112,7 @@ class BotsController extends Controller
      */
     public function destroy($id)
     {
-        ::destroy($id);
+        Bot::destroy($id);
 
         return redirect('bots')->with('flash_message', ' deleted!');
     }
