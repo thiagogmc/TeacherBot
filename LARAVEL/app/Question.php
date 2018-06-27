@@ -11,7 +11,7 @@ class Question extends Model
      *
      * @var string
      */
-    protected $table = 'Question';
+    protected $table = 'questions';
 
     /**
     * The database primary key value.
@@ -27,5 +27,5 @@ class Question extends Model
      */
     protected $fillable = ['bot_id', 'name', 'subject', 'statement'];
 
-    
+
 }

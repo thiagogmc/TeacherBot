@@ -9,9 +9,9 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Cadastrar Bot</div>
+                    <div class="card-header">Cadastrar Questão</div>
                     <div class="card-body">
-                        <a href="{{ url('/bots') }}" title="Voltar"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button></a>
+                        <a href="{{ url('/questions') }}" title="Voltar"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button></a>
                         <br />
                         <br />
 
@@ -23,10 +23,10 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/bots') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/questions') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
-                            @include ('bots.form')
+                            @include ('questions.form')
 
                         </form>
 

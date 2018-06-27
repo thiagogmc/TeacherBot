@@ -5,7 +5,9 @@ namespace tb\Http\Controllers;
 use tb\Http\Requests;
 use tb\Http\Controllers\Controller;
 
-use tb\;
+use tb\Question;
+use tb\Bot;
+
 use Illuminate\Http\Request;
 
 class QuestionsController extends Controller
@@ -21,9 +23,9 @@ class QuestionsController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $questions = ::latest()->paginate($perPage);
+            $questions = Question::latest()->paginate($perPage);
         } else {
-            $questions = ::latest()->paginate($perPage);
+            $questions = Question::latest()->paginate($perPage);
         }
 
         return view('questions.index', compact('questions'));
@@ -36,7 +38,8 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        return view('questions.create');
+        $bots = Bot::all();
+        return view('questions.create', compact('bots'));
     }
 
     /**
@@ -48,10 +51,10 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
-        ::create($requestData);
+
+        Question::create($requestData);
 
         return redirect('questions')->with('flash_message', ' added!');
     }
@@ -65,7 +68,7 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        $question = ::findOrFail($id);
+        $question = Question::findOrFail($id);
 
         return view('questions.show', compact('question'));
     }
@@ -79,7 +82,7 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        $question = ::findOrFail($id);
+        $question = Question::findOrFail($id);
 
         return view('questions.edit', compact('question'));
     }
@@ -94,10 +97,10 @@ class QuestionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
-        $question = ::findOrFail($id);
+
+        $question = Question::findOrFail($id);
         $question->update($requestData);
 
         return redirect('questions')->with('flash_message', ' updated!');
@@ -112,7 +115,7 @@ class QuestionsController extends Controller
      */
     public function destroy($id)
     {
-        ::destroy($id);
+        Question::destroy($id);
 
         return redirect('questions')->with('flash_message', ' deleted!');
     }

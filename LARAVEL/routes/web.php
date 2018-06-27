@@ -17,10 +17,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('users', 'UsersController');
 Route::resource('bots', 'BotsController');
-
-Route::resource('bots', 'BotsController');
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('questions', 'QuestionsController');
