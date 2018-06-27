@@ -39,9 +39,5 @@ class CreateUsersBotsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('users_bots');
-        $table->unsignedInteger('user_id');
-        $table->foreign('user_id', 'fk_bots_user')
-              ->references('id')
-              ->on('users');
     }
 }
