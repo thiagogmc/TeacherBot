@@ -1,63 +1,63 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
 @section('content')
-<div class="row">
-    <section class="content-header">
-        <h1>
-            Bots
-            <small>Lista</small>
-        </h1>
-    </section>
-
-
-    <section class="content">
+    <div class="container">
         <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Bots cadastrados</h3>
+            @include('admin.sidebar')
 
-                        <div class="box-tools">
-                            <div class="pull-right">
-                                <a href="{{ url('/bots/create') }}" class="btn btn-success btn-sm" title="Add New bot">
-                                    <i class="fa fa-plus" aria-hidden="true"></i> Novo Bot
-                                </a>
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">Bots</div>
+                    <div class="card-body">
+                        <a href="{{ url('/bots/create') }}" class="btn btn-success btn-sm" title="Add New Bot">
+                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                        </a>
+
+                        <form method="GET" action="{{ url('/bots') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
+                                <span class="input-group-append">
+                                    <button class="btn btn-secondary" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
                             </div>
-                        </div>
-                    </div>
-                    <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nome</th><th><i class="fa fa-cog"></i></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($bots as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration or $item->id }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>
-                                        <a href="{{ url('/bots/' . $item->id) }}" title="Ver"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
-                                        <a href="{{ url('/bots/' . $item->id . '/edit') }}" title="Editar"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
+                        </form>
 
-                                        <form method="POST" action="{{ url('/bots' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                            {{ method_field('DELETE') }}
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-danger btn-xs" title="Delete bot" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Apagar</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        <div class="pagination-wrapper"> {!! $bots->appends(['search' => Request::get('search')])->render() !!} </div>
+                        <br/>
+                        <br/>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th><th>Name</th><th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($bots as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration or $item->id }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>
+                                            <a href="{{ url('/bots/' . $item->id) }}" title="View Bot"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            <a href="{{ url('/bots/' . $item->id . '/edit') }}" title="Edit Bot"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+
+                                            <form method="POST" action="{{ url('/bots' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                {{ method_field('DELETE') }}
+                                                {{ csrf_field() }}
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Bot" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            <div class="pagination-wrapper"> {!! $bots->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
+
                     </div>
                 </div>
             </div>
-        </section>
-</div>
-
+        </div>
+    </div>
 @endsection

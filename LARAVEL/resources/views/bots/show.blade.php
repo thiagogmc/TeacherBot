@@ -1,44 +1,37 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
 @section('content')
-    <div class="row">
-        <section class="content-header pull-left">
-            <h1>
-                Bot
-                <small>Dados</small>
-            </h1>
-        </section>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Dados do Bot</h3>
-                    <div class="box-tools pull-right">
-                        <a href="{{ url('/bots') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button></a>
-                        <a href="{{ url('/bots/' . $bot->id . '/edit') }}" title="Editar Bot"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
+    <div class="container">
+        <div class="row">
+            @include('admin.sidebar')
+
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">Bot {{ $bot->id }}</div>
+                    <div class="card-body">
+
+                        <a href="{{ url('/bots') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/bots/' . $bot->id . '/edit') }}" title="Edit Bot"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+
                         <form method="POST" action="{{ url('bots' . '/' . $bot->id) }}" accept-charset="UTF-8" style="display:inline">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
-                            <button type="submit" class="btn btn-danger btn-sm" title="Excluir Bot" onclick="return confirm(&quot;Tem certeza de que deseja exluir o Bot?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Excluir</button>
+                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Bot" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                         </form>
+                        <br/>
+                        <br/>
 
-                    </div>
-                </div>
-                <div class="box-body">
-
-                    <div class="col-md-12">
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
                                     <tr>
                                         <th>ID</th><td>{{ $bot->id }}</td>
                                     </tr>
-                                    <tr><th> Nome </th><td> {{ $bot->name }} </td></tr>
+                                    <tr><th> Name </th><td> {{ $bot->name }} </td></tr>
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
                 </div>
             </div>
