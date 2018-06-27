@@ -3,13 +3,15 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
+            <div class="col-md-3">
+                @include('admin.sidebar')
+            </div>
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Edit Bot #{{ $bot->id }}</div>
+                    <div class="card-header">Editar Bot: {{ $bot->name }}</div>
                     <div class="card-body">
-                        <a href="{{ url('/bots') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/bots') }}" title="Voltar"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button></a>
                         <br />
                         <br />
 
@@ -25,7 +27,7 @@
                             {{ method_field('PATCH') }}
                             {{ csrf_field() }}
 
-                            @include ('bots.form', ['submitButtonText' => 'Update'])
+                            @include ('bots.form', ['submitButtonText' => 'Salvar'])
 
                         </form>
 
