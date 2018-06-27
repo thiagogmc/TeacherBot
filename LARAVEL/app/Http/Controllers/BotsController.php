@@ -2,11 +2,13 @@
 
 namespace tb\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use tb\Http\Requests;
 use tb\Http\Controllers\Controller;
 
 use tb\Bot;
 use Illuminate\Http\Request;
+use tb\User;
 
 class BotsController extends Controller
 {
@@ -21,9 +23,16 @@ class BotsController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $bots = Bot::latest()->paginate($perPage);
+            $bots =  Auth::user()
+                ->bots()
+                ->latest()
+                ->paginate($perPage);
         } else {
-            $bots = Bot::latest()->paginate($perPage);
+            //TODO Ajeitar a busca
+            $bots =  Auth::user()
+                ->bots()
+                ->latest()
+                ->paginate($perPage);
         }
 
         return view('bots.index', compact('bots'));

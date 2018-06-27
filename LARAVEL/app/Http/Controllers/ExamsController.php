@@ -2,6 +2,7 @@
 
 namespace tb\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use tb\Http\Requests;
 use tb\Http\Controllers\Controller;
 
@@ -21,10 +22,16 @@ class ExamsController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
+        $bots = Auth::user()
+            ->bots;
+        foreach ($bots as $bot) {
+            $ids[] = $bot->id;
+        }
+
         if (!empty($keyword)) {
-            $exams = Exam::latest()->paginate($perPage);
+            $exams = Exam::whereIn('bot_id', $ids)->paginate($perPage);
         } else {
-            $exams = Exam::latest()->paginate($perPage);
+            $exams = Exam::whereIn('bot_id', $ids)->paginate($perPage);
         }
 
         return view('exams.index', compact('exams'));

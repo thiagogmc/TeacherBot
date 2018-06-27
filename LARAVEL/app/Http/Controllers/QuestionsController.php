@@ -2,6 +2,7 @@
 
 namespace tb\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use tb\Http\Requests;
 use tb\Http\Controllers\Controller;
 
@@ -22,10 +23,16 @@ class QuestionsController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
+        $bots = Auth::user()
+            ->bots;
+        foreach ($bots as $bot) {
+            $ids[] = $bot->id;
+        }
+
         if (!empty($keyword)) {
-            $questions = Question::latest()->paginate($perPage);
+            $questions = Question::whereIn('bot_id', $ids)->paginate($perPage);
         } else {
-            $questions = Question::latest()->paginate($perPage);
+            $questions = Question::whereIn('bot_id', $ids)->paginate($perPage);
         }
 
         return view('questions.index', compact('questions'));
