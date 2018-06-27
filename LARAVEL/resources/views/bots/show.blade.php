@@ -27,9 +27,17 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th>ID</th><td>{{ $bot->id }}</td>
+                                        <th>ID</th>
+                                        <td>{{ $bot->id }}</td>
                                     </tr>
-                                    <tr><th> Nome </th><td> {{ $bot->name }} </td></tr>
+                                    <tr>
+                                        <th> Nome </th>
+                                        <td> {{ $bot->name }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Token </th>
+                                        <td> {{ $bot->token }} </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
