@@ -1,22 +1,28 @@
 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
     <div class="col-md-6">
         <label for="name">{{ 'Nome' }}</label>
-        <input class="form-control" name="name" type="text" id="name" value="{{ $bot->name or ''}}" >
+        <input class="form-control" name="name" type="text" id="name" value="{{ $question->name or ''}}" >
         {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
     </div>
     <div class="col-md-6">
+        <label for="bot_id">Bot</label>
+        <br>
+        <select name="bot_id" class="form-control">
+            <option value="">Selecione um bot</option>
+            @foreach($bots as $bot)
+            <option {{$bot->id == $question->bot->id ? 'selected' : ''}} value="{{ $bot->id }}">{{$bot->name}}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="col-md-12">
         <label for="subject">Assunto</label>
-        <input class="form-control" name="subject" type="text" id="subject" value="{{ $bot->subject or ''}}" >
+        <input class="form-control" name="subject" type="text" id="subject" value="{{ $question->subject or ''}}" >
         {!! $errors->first('subject', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="col-md-6">
-        <label for="subject">Statement</label>
-        <input class="form-control" name="statement" type="text" id="statement" value="{{ $bot->statement or ''}}" >
+    <div class="col-md-12">
+        <label for="subject">Enunciado</label>
+        <textarea class="form-control" name="statement" type="text" id="statement">{{ $question->statement or ''}}</textarea>
         {!! $errors->first('statement', '<p class="help-block">:message</p>') !!}
-    </div>
-    <div class="col-md-6">
-        <label for="bot_id">Bot</label>
-        {{!! Form::open(['bot_id', $bots]) !!}}
     </div>
 </div>
 

@@ -38,7 +38,7 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        $bots = Bot::all();
+        $bots = Bot::all(['id', 'name']);
         return view('questions.create', compact('bots'));
     }
 
@@ -69,7 +69,6 @@ class QuestionsController extends Controller
     public function show($id)
     {
         $question = Question::findOrFail($id);
-
         return view('questions.show', compact('question'));
     }
 
@@ -83,8 +82,8 @@ class QuestionsController extends Controller
     public function edit($id)
     {
         $question = Question::findOrFail($id);
-
-        return view('questions.edit', compact('question'));
+        $bots = Bot::all(['id', 'name']);
+        return view('questions.edit', compact('question', 'bots'));
     }
 
     /**

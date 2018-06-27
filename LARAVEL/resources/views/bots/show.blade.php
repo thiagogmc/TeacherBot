@@ -29,7 +29,7 @@
                                     <tr>
                                         <th>ID</th><td>{{ $bot->id }}</td>
                                     </tr>
-                                    <tr><th> Name </th><td> {{ $bot->name }} </td></tr>
+                                    <tr><th> Nome </th><td> {{ $bot->name }} </td></tr>
                                 </tbody>
                             </table>
                         </div>

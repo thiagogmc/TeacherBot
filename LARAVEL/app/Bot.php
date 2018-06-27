@@ -27,5 +27,7 @@ class Bot extends Model
      */
     protected $fillable = ['name'];
 
-
+    public function question(){
+        return $this->hasMany('tb\Question');
+    }
 }
