@@ -11,7 +11,7 @@ class Exam extends Model
      *
      * @var string
      */
-    protected $table = 'Exam';
+    protected $table = 'exams';
 
     /**
     * The database primary key value.
@@ -27,5 +27,8 @@ class Exam extends Model
      */
     protected $fillable = ['bot_id', 'date', 'content', 'score'];
 
-    
+    public function bot(){
+        return $this->belongsTo('tb\Bot');
+    }
+
 }

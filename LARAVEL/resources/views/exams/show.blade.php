@@ -9,13 +9,13 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Questão: {{ $question->name }}</div>
+                    <div class="card-header">Prova: {{ Carbon\Carbon::parse($exam->date)->format('d/m/Y') }}</div>
                     <div class="card-body">
 
-                        <a href="{{ url('/questions') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button></a>
-                        <a href="{{ url('/questions/' . $question->id . '/edit') }}" title="Editar Questão"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
+                        <a href="{{ url('/exams') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button></a>
+                        <a href="{{ url('/exams/' . $exam->id . '/edit') }}" title="Editar Questão"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
 
-                        <form method="POST" action="{{ url('questions' . '/' . $question->id) }}" accept-charset="UTF-8" style="display:inline">
+                        <form method="POST" action="{{ url('exams' . '/' . $exam->id) }}" accept-charset="UTF-8" style="display:inline">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-danger btn-sm" title="Apagar Questão" onclick="return confirm(&quot;Deseja apagar?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Apagar</button>
@@ -27,19 +27,19 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th>ID</th><td>{{ $question->id }}</td>
+                                        <th>ID</th><td>{{ $exam->id }}</td>
                                     </tr>
                                     <tr>
-                                        <th> Nome </th><td> {{ $question->name }} </td>
+                                        <th> Data </th><td> {{ Carbon\Carbon::parse($exam->date)->format('d/m/Y') }} </td>
                                     </tr>
                                     <tr>
-                                        <th> Bot </th><td> {{ $question->bot->name }} </td>
+                                        <th> Bot </th><td> {{ $exam->bot->name }} </td>
                                     </tr>
                                     <tr>
-                                        <th> Assunto </th><td> {{ $question->subject }} </td>
+                                        <th> Conteúdo </th><td> {{ $exam->content }} </td>
                                     </tr>
                                     <tr>
-                                        <th> Enunciado </th><td> {{ $question->statement }} </td>
+                                        <th> Valor </th><td> {{ $exam->score }} </td>
                                     </tr>
                                 </tbody>
                             </table>

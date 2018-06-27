@@ -5,7 +5,8 @@ namespace tb\Http\Controllers;
 use tb\Http\Requests;
 use tb\Http\Controllers\Controller;
 
-use tb\;
+use tb\Exam;
+use tb\Bot;
 use Illuminate\Http\Request;
 
 class ExamsController extends Controller
@@ -21,9 +22,9 @@ class ExamsController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $exams = ::latest()->paginate($perPage);
+            $exams = Exam::latest()->paginate($perPage);
         } else {
-            $exams = ::latest()->paginate($perPage);
+            $exams = Exam::latest()->paginate($perPage);
         }
 
         return view('exams.index', compact('exams'));
@@ -36,7 +37,8 @@ class ExamsController extends Controller
      */
     public function create()
     {
-        return view('exams.create');
+        $bots = Bot::all(['id', 'name']);
+        return view('exams.create', compact('bots'));
     }
 
     /**
@@ -48,10 +50,10 @@ class ExamsController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
-        ::create($requestData);
+
+        Exam::create($requestData);
 
         return redirect('exams')->with('flash_message', ' added!');
     }
@@ -65,7 +67,7 @@ class ExamsController extends Controller
      */
     public function show($id)
     {
-        $exam = ::findOrFail($id);
+        $exam = Exam::findOrFail($id);
 
         return view('exams.show', compact('exam'));
     }
@@ -79,9 +81,9 @@ class ExamsController extends Controller
      */
     public function edit($id)
     {
-        $exam = ::findOrFail($id);
-
-        return view('exams.edit', compact('exam'));
+        $exam = Exam::findOrFail($id);
+        $bots = Bot::all(['id', 'name']);
+        return view('exams.edit', compact('exam', 'bots'));
     }
 
     /**
@@ -94,10 +96,10 @@ class ExamsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
-        $exam = ::findOrFail($id);
+
+        $exam = Exam::findOrFail($id);
         $exam->update($requestData);
 
         return redirect('exams')->with('flash_message', ' updated!');
@@ -112,7 +114,7 @@ class ExamsController extends Controller
      */
     public function destroy($id)
     {
-        ::destroy($id);
+        Exam::destroy($id);
 
         return redirect('exams')->with('flash_message', ' deleted!');
     }

@@ -10,7 +10,7 @@
         <select name="bot_id" class="form-control">
             <option value="">Selecione um bot</option>
             @foreach($bots as $bot)
-            <option {{$bot->id == $question->bot->id ? 'selected' : ''}} value="{{ $bot->id }}">{{$bot->name}}</option>
+            <option {{isset($question) ? ($bot->id == $question->bot->id ? 'selected' : '') : ''}} value="{{ $bot->id }}">{{$bot->name}}</option>
             @endforeach
         </select>
     </div>
