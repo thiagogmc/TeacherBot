@@ -34,4 +34,9 @@ class Bot extends Model
     public function exam(){
         return $this->hasMany('tb\Exam');
     }
+
+    public function resource(){
+        return $this->hasMany('tb\Resource');
+    }
+
 }

@@ -5,7 +5,8 @@ namespace tb\Http\Controllers;
 use tb\Http\Requests;
 use tb\Http\Controllers\Controller;
 
-use tb\;
+use tb\Resource;
+use tb\Bot;
 use Illuminate\Http\Request;
 
 class ResourcesController extends Controller
@@ -21,9 +22,9 @@ class ResourcesController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $resources = ::latest()->paginate($perPage);
+            $resources = Resource::latest()->paginate($perPage);
         } else {
-            $resources = ::latest()->paginate($perPage);
+            $resources = Resource::latest()->paginate($perPage);
         }
 
         return view('resources.index', compact('resources'));
@@ -36,7 +37,8 @@ class ResourcesController extends Controller
      */
     public function create()
     {
-        return view('resources.create');
+        $bots = Bot::all(['id', 'name']);
+        return view('resources.create', compact('bots'));
     }
 
     /**
@@ -48,10 +50,10 @@ class ResourcesController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
-        ::create($requestData);
+
+        Resource::create($requestData);
 
         return redirect('resources')->with('flash_message', ' added!');
     }
@@ -65,7 +67,7 @@ class ResourcesController extends Controller
      */
     public function show($id)
     {
-        $resource = ::findOrFail($id);
+        $resource = Resource::findOrFail($id);
 
         return view('resources.show', compact('resource'));
     }
@@ -79,9 +81,9 @@ class ResourcesController extends Controller
      */
     public function edit($id)
     {
-        $resource = ::findOrFail($id);
-
-        return view('resources.edit', compact('resource'));
+        $resource = Resource::findOrFail($id);
+        $bots = Bot::all(['id', 'name']);
+        return view('resources.edit', compact('resource', 'bots'));
     }
 
     /**
@@ -94,10 +96,10 @@ class ResourcesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
-        $resource = ::findOrFail($id);
+
+        $resource = Resource::findOrFail($id);
         $resource->update($requestData);
 
         return redirect('resources')->with('flash_message', ' updated!');
@@ -112,7 +114,7 @@ class ResourcesController extends Controller
      */
     public function destroy($id)
     {
-        ::destroy($id);
+        Resource::destroy($id);
 
         return redirect('resources')->with('flash_message', ' deleted!');
     }

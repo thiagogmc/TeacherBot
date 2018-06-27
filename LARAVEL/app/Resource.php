@@ -11,7 +11,7 @@ class Resource extends Model
      *
      * @var string
      */
-    protected $table = 'Resource';
+    protected $table = 'resources';
 
     /**
     * The database primary key value.
@@ -27,5 +27,7 @@ class Resource extends Model
      */
     protected $fillable = ['bot_id', 'name', 'content'];
 
-    
+    public function bot(){
+        return $this->belongsTo('tb\Bot');
+    }
 }

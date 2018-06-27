@@ -20,3 +20,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('bots', 'BotsController');
 Route::resource('questions', 'QuestionsController');
 Route::resource('exams', 'ExamsController');
+Route::resource('resources', 'ResourcesController');
