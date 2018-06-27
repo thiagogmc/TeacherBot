@@ -9,7 +9,7 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Bot: {{ $bot->name }}</div>
+                    <div class="card-header" align="center"><h2>Bot: {{ $bot->name }}</h2></div>
                     <div class="card-body">
 
                         <a href="{{ url('/bots') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button></a>

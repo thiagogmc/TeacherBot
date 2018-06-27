@@ -1,8 +1,10 @@
 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-    <label for="name" class="col-md-4 control-label">{{ 'Nome' }}</label>
-    <div class="col-md-6">
-        <input class="form-control" name="name" type="text" id="name" value="{{ $bot->name or ''}}" >
-        {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-2">
+            <label for="name">{{ 'Nome' }}</label>
+            <input class="form-control" name="name" type="text" id="name" value="{{ $bot->name or ''}}" >
+            {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+        </div>
     </div>
 </div>
 

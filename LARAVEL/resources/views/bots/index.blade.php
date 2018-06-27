@@ -9,7 +9,7 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Bots</div>
+                    <div class="card-header" align="center"><h2>Meus Bots</h2></div>
                     <div class="card-body">
                         <a href="{{ url('/bots/create') }}" class="btn btn-success btn-sm" title="Novo Bot">
                             <i class="fa fa-plus" aria-hidden="true"></i> Novo Bot
