@@ -27,16 +27,24 @@ class Bot extends Model
      */
     protected $fillable = ['name', 'token'];
 
-    public function question(){
+    public function question()
+    {
         return $this->hasMany('tb\Question');
     }
 
-    public function exam(){
+    public function exam()
+    {
         return $this->hasMany('tb\Exam');
     }
 
-    public function resource(){
+    public function resource()
+    {
         return $this->hasMany('tb\Resource');
+    }
+
+    public function bots()
+    {
+        return $this->belongsToMany('tb\User', 'users_bots');
     }
 
 }

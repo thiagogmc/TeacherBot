@@ -27,7 +27,8 @@ class Exam extends Model
      */
     protected $fillable = ['bot_id', 'date', 'content', 'score'];
 
-    public function bot(){
+    public function bot()
+    {
         return $this->belongsTo('tb\Bot');
     }
 

@@ -27,7 +27,8 @@ class Question extends Model
      */
     protected $fillable = ['bot_id', 'name', 'subject', 'statement'];
 
-    public function bot(){
+    public function bot()
+    {
         return $this->belongsTo('tb\Bot');
     }
 }
