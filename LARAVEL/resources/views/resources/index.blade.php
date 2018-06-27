@@ -9,7 +9,7 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Mateiral</div>
+                    <div class="card-header">Material</div>
                     <div class="card-body">
                         <a href="{{ url('/resources/create') }}" class="btn btn-success btn-sm" title="Nova Prova">
                             <i class="fa fa-plus" aria-hidden="true"></i> Novo Material
