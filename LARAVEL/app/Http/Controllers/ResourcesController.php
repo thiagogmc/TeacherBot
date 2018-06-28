@@ -24,6 +24,7 @@ class ResourcesController extends Controller
 
         $bots = Auth::user()
             ->bots;
+        $ids = array();
         foreach ($bots as $bot) {
             $ids[] = $bot->id;
         }
