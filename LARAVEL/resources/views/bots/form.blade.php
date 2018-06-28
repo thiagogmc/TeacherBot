@@ -2,13 +2,13 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-2">
             <label for="name">{{ 'Nome' }}</label>
-            <input class="form-control" name="name" type="text" id="name" value="{{ $bot->name or ''}}" >
+            <input class="form-control" required name="name" type="text" id="name" value="{{ $bot->name or ''}}" >
             {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
         </div>
 
         <div class="col-md-6 col-md-offset-2">
             <label for="token">{{ 'Token' }}</label>
-            <input class="form-control" name="token" type="text" id="token" value="{{ $bot->token or ''}}" >
+            <input class="form-control" required name="token" type="text" id="token" value="{{ $bot->token or ''}}" >
             {!! $errors->first('token', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
