@@ -57,10 +57,12 @@ class BotsController extends Controller
      */
     public function store(Request $request)
     {
+        $user = User::find(Auth::id());
 
         $requestData = $request->all();
 
-        Bot::create($requestData);
+        $bots = Bot::create($requestData);
+        $bots->users()->attach($user);
 
         return redirect('bots')->with('flash_message', ' added!');
     }

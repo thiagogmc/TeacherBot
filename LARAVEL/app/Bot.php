@@ -42,7 +42,7 @@ class Bot extends Model
         return $this->hasMany('tb\Resource');
     }
 
-    public function bots()
+    public function users()
     {
         return $this->belongsToMany('tb\User', 'users_bots');
     }
