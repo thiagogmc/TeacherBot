@@ -17,12 +17,14 @@ class CreateUsersBotsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id', 'fk_users_bots_user')
-                  ->references('id')
-                  ->on('users');
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->unsignedInteger('bot_id');
             $table->foreign('bot_id', 'fk_users_bots_bots')
-                  ->references('id')
-                  ->on('bots');
+                ->references('id')
+                ->on('bots')
+                ->onDelete('cascade');
             $table->timestamps();
         });
         Schema::table('bots', function (Blueprint $table) {

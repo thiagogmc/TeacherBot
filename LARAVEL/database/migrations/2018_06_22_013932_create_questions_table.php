@@ -16,7 +16,7 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('bot_id');
-            $table->foreign('bot_id', 'fk_questions_bot')->references('id')->on('bots');
+            $table->foreign('bot_id', 'fk_questions_bot')->references('id')->on('bots')->onDelete('cascade');
             $table->string('name');
             $table->string('subject');
             $table->text('statement');

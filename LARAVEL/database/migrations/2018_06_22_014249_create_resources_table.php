@@ -16,7 +16,7 @@ class CreateResourcesTable extends Migration
         Schema::create('resources', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('bot_id');
-            $table->foreign('bot_id', 'fk_resources_bot')->references('id')->on('bots');
+            $table->foreign('bot_id', 'fk_resources_bot')->references('id')->on('bots')->onDelete('cascade');
             $table->string('name');
             $table->string('content');
             $table->timestamps();

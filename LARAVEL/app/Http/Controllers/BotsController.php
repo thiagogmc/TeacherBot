@@ -23,13 +23,13 @@ class BotsController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $bots =  Auth::user()
+            $bots = Auth::user()
                 ->bots()
                 ->latest()
                 ->paginate($perPage);
         } else {
             //TODO Ajeitar a busca
-            $bots =  Auth::user()
+            $bots = Auth::user()
                 ->bots()
                 ->latest()
                 ->paginate($perPage);
@@ -70,7 +70,7 @@ class BotsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return \Illuminate\View\View
      */
@@ -84,7 +84,7 @@ class BotsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return \Illuminate\View\View
      */
@@ -99,7 +99,7 @@ class BotsController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param  int  $id
+     * @param  int $id
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -117,14 +117,13 @@ class BotsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
         Bot::destroy($id);
-
         return redirect('bots')->with('flash_message', ' deleted!');
     }
 }

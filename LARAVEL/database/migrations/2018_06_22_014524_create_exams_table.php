@@ -16,7 +16,7 @@ class CreateExamsTable extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('bot_id');
-            $table->foreign('bot_id', 'fk_exams_bot')->references('id')->on('bots');
+            $table->foreign('bot_id', 'fk_exams_bot')->references('id')->on('bots')->onDelete('cascade');
             $table->date('date');
             $table->string('content');
             $table->float('score', 2, 2);
