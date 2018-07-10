@@ -11,13 +11,17 @@
 |
 */
 
-Route::get('/', 'Auth\LoginController@showLoginFormphp');
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('bots', 'BotsController');
+Route::get('/bots/{token}/hook', 'BotsController@webhook')->name('webhook');
+
 Route::resource('questions', 'QuestionsController');
+
 Route::resource('exams', 'ExamsController');
+
 Route::resource('resources', 'ResourcesController');

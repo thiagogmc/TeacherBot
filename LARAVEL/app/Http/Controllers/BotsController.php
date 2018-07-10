@@ -126,4 +126,9 @@ class BotsController extends Controller
         Bot::destroy($id);
         return redirect('bots')->with('flash_message', ' deleted!');
     }
+
+    public function webhook($token)
+    {
+        dd($token);
+    }
 }
