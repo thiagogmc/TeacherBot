@@ -25,7 +25,7 @@ class Bot extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'token'];
+    protected $fillable = ['name', 'token', 'username'];
 
     public function question()
     {
