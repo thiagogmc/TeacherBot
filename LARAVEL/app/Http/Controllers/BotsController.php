@@ -57,9 +57,15 @@ class BotsController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::find(Auth::id());
-
         $requestData = $request->all();
+        if (!Bot::setWebHook($requestData)) {
+            return redirect()->back()->with(
+                'error',
+                'Desculpe-nos, não foi possível processar a transação. Confira os valores digitados.'
+            );
+        }
+
+        $user = User::find(Auth::id());
 
         $bots = Bot::create($requestData);
         $bots->users()->attach($user);
