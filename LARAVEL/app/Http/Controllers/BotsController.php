@@ -111,8 +111,13 @@ class BotsController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $requestData = $request->all();
+        if (!Bot::setWebHook($requestData)) {
+            return redirect()->back()->with(
+                'error',
+                'Desculpe-nos, não foi possível processar a transação. Confira os valores digitados.'
+            );
+        }
 
         $bot = Bot::findOrFail($id);
         $bot->update($requestData);
