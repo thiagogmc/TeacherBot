@@ -169,7 +169,8 @@ return [
         /*
          * Package Service Providers...
          */
-
+         Telegram\Bot\Laravel\TelegramServiceProvider::class,
+         Collective\Html\HtmlServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -178,6 +179,7 @@ return [
         // tb\Providers\BroadcastServiceProvider::class,
         tb\Providers\EventServiceProvider::class,
         tb\Providers\RouteServiceProvider::class,
+
 
     ],
 
@@ -230,6 +232,8 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
+        'Telegram' => Telegram\Bot\Laravel\Facades\Telegram::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
     ],
 
 ];
