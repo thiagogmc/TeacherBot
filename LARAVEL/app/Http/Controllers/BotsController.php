@@ -183,10 +183,11 @@ class BotsController extends Controller
                     'Data: '.$item['date'].chr(10).
                     'Valor: '.$item['score'].chr(10);
 
-                return $telegram->sendMessage([
+                $telegram->sendMessage([
                     'chat_id' => $chatId,
                     'text' => $text,
                 ]);
+                return;
             }
         }
 
@@ -200,10 +201,11 @@ class BotsController extends Controller
                     'Assunto: '.$item['subject'].chr(10).
                     'Enunciado: '.$item['statement'].chr(10);
 
-                return $telegram->sendMessage([
+                $telegram->sendMessage([
                     'chat_id' => $chatId,
                     'text' => $text,
                 ]);
+                return;
             }
         }
 
@@ -216,10 +218,12 @@ class BotsController extends Controller
                     'Título: '.$item['name'].chr(10).
                     'Conteúdo: '.$item['content'].chr(10);
 
-                return $telegram->sendMessage([
+                $telegram->sendMessage([
                     'chat_id' => $chatId,
                     'text' => $text,
                 ]);
+
+                return;
             }
         }
         $keyboard = [
