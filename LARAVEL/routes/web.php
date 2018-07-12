@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+// Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
@@ -25,3 +25,11 @@ Route::resource('questions', 'QuestionsController');
 Route::resource('exams', 'ExamsController');
 
 Route::resource('resources', 'ResourcesController');
+
+Route::get('get-updates',   'TelegramController@getUpdates');
+Route::get('send-message',  'TelegramController@getSendMessage');
+Route::post('send-message', 'TelegramController@postSendMessage');
+
+Route::get('/', function () {
+    return view('send-message');
+});
