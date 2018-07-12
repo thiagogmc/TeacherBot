@@ -9,6 +9,9 @@ use tb\Http\Controllers\Controller;
 use tb\Bot;
 use Illuminate\Http\Request;
 use tb\User;
+use Longman\TelegramBot\Telegram;
+use Longman\TelegramBot\Exception\TelegramException;
+use Longman\TelegramBot\Exception\TelegramLogException;
 
 class BotsController extends Controller
 {
@@ -140,6 +143,23 @@ class BotsController extends Controller
 
     public function webhook($token)
     {
-        dd($token);
+        $bot = Bot::where('token', $token)->firstOrFail();
+        session(['bot_id' => $bot->id]);
+        $commands_paths = [
+            __DIR__.'/../../app/Commands',
+        ];
+        dd($commands_paths);
+        try {
+            $telegram = new Telegram($token, $bot->username);
+            $telegram->addCommandsPaths($commands_paths);
+            $telegram->handle();
+        } catch (TelegramException $e) {
+            echo $e;
+        } catch (TelegramLogException $e) {
+        // Silence is golden!
+        // Uncomment this to catch log initialisation errors
+            echo $e;
+        }
+
     }
 }
