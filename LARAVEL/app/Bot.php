@@ -3,6 +3,8 @@
 namespace tb;
 
 use Illuminate\Database\Eloquent\Model;
+use Longman\TelegramBot\Exception\TelegramException;
+use Longman\TelegramBot\Telegram;
 
 class Bot extends Model
 {
@@ -25,7 +27,7 @@ class Bot extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'token'];
+    protected $fillable = ['name', 'token', 'username'];
 
     public function question()
     {
@@ -45,6 +47,22 @@ class Bot extends Model
     public function users()
     {
         return $this->belongsToMany('tb\User', 'users_bots');
+    }
+
+    public static function setWebHook(array $request)
+    {
+        $apiKey = $request['token'];
+        $username = $request['username'];
+        $url = env('APP_URL') . '/bots/' . $apiKey . '/hook/';
+
+        try {
+            $telegram = new Telegram($apiKey, $username);
+            $result = $telegram->setWebhook($url);
+        } catch (TelegramException $e) {
+            return false;
+        }
+
+        return true;
     }
 
 }

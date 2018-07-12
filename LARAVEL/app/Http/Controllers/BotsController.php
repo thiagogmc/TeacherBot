@@ -57,9 +57,15 @@ class BotsController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::find(Auth::id());
-
         $requestData = $request->all();
+        if (!Bot::setWebHook($requestData)) {
+            return redirect()->back()->with(
+                'error',
+                'Desculpe-nos, não foi possível processar a transação. Confira os valores digitados.'
+            );
+        }
+
+        $user = User::find(Auth::id());
 
         $bots = Bot::create($requestData);
         $bots->users()->attach($user);
@@ -105,8 +111,13 @@ class BotsController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $requestData = $request->all();
+        if (!Bot::setWebHook($requestData)) {
+            return redirect()->back()->with(
+                'error',
+                'Desculpe-nos, não foi possível processar a transação. Confira os valores digitados.'
+            );
+        }
 
         $bot = Bot::findOrFail($id);
         $bot->update($requestData);
@@ -125,5 +136,10 @@ class BotsController extends Controller
     {
         Bot::destroy($id);
         return redirect('bots')->with('flash_message', ' deleted!');
+    }
+
+    public function webhook($token)
+    {
+        dd($token);
     }
 }

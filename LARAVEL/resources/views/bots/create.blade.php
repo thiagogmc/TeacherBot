@@ -23,6 +23,12 @@
                             </ul>
                         @endif
 
+                        @if (session('error'))
+                            <ul class="alert alert-danger">
+                                    <li>{{ session('error')}}</li>
+                            </ul>
+                        @endif
+
                         <form method="POST" action="{{ url('/bots') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
