@@ -2,18 +2,19 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                @include('admin.sidebar')
-            </div>
+        
 
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header" align="center"><h2>Meus Bots</h2></div>
                     <div class="card-body">
+                        <a href="{{ url('/home') }}" title="Voltar"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button></a>
                         <a href="{{ url('/bots/create') }}" class="btn btn-success btn-sm" title="Novo Bot">
                             <i class="fa fa-plus" aria-hidden="true"></i> Novo Bot
                         </a>
+                        <a href="{{ url('/exams') }}" class="btn btn-success btn-sm">Gerenciar Provas</a>
+                        <a href="{{ url('/resources') }}" class="btn btn-success btn-sm">Gerenciar Materiais</a>
+                        <a href="{{ url('/questions') }}" class="btn btn-success btn-sm">Gerenciar Questões</a>
                         <div class="pull-right" style="white-space:nowrap">
                             <form method="GET" action="{{ url('/bots') }}" accept-charset="UTF-8" role="search">
                                 <div class="input-group">
