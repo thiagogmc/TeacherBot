@@ -3,6 +3,7 @@
 namespace tb\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use tb\Http\Requests;
 use tb\Http\Controllers\Controller;
 
@@ -153,7 +154,7 @@ class BotsController extends Controller
             $telegram->addCommandsPaths($commands_paths);
             $telegram->handle();
         } catch (TelegramException $e) {
-            echo $e;
+            Log::error($e);
         } catch (TelegramLogException $e) {
         // Silence is golden!
         // Uncomment this to catch log initialisation errors
