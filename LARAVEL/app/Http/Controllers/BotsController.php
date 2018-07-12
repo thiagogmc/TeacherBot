@@ -144,22 +144,23 @@ class BotsController extends Controller
 
     public function webhook(Request $request, $token)
     {
-        $bot = Bot::where('token', $token)->firstOrFail();
-        session(['bot_id' => $bot->id]);
-        $commands_paths = [
-            __DIR__.'/../../app/Commands',
-        ];
-        try {
-            $telegram = new Telegram($token, $bot->username);
-            $telegram->addCommandsPaths($commands_paths);
-            $telegram->handle();
-        } catch (TelegramException $e) {
-            Log::error($e);
-        } catch (TelegramLogException $e) {
-        // Silence is golden!
-        // Uncomment this to catch log initialisation errors
-            echo $e;
-        }
+//        $bot = Bot::where('token', $token)->firstOrFail();
+//        session(['bot_id' => $bot->id]);
+//        $commands_paths = [
+//            __DIR__.'/../../app/Commands',
+//        ];
+//        try {
+//            $telegram = new Telegram($token, $bot->username);
+//            $telegram->addCommandsPaths($commands_paths);
+//            $telegram->handle();
+//        } catch (TelegramException $e) {
+//            Log::error($e);
+//        } catch (TelegramLogException $e) {
+//        // Silence is golden!
+//        // Uncomment this to catch log initialisation errors
+//            echo $e;
+//        }
 
+        die('hello');
     }
 }

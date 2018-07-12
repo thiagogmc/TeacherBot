@@ -18,7 +18,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('bots', 'BotsController');
-
+Route::post('/bots/{token}/hook', 'BotsController@webhook')->name('webhook');
 
 Route::resource('questions', 'QuestionsController');
 
