@@ -175,7 +175,7 @@ class BotsController extends Controller
 
         if ($command == '/provas') {
             $bot = Bot::where('token', $token)->firstOrFail();
-            $result = Exam::where('bot_id', session('bot_id'))->get();
+            $result = Exam::where('bot_id', $bot->id)->get();
             $array = $result->toArray();
             foreach ($array as $item) {
                 $text =
@@ -193,7 +193,7 @@ class BotsController extends Controller
 
         if ($command == '/questoes') {
             $bot = Bot::where('token', $token)->firstOrFail();
-            $result = Question::where('bot_id', session('bot_id'))->get();
+            $result = Question::where('bot_id', $bot->id)->get();
             $array = $result->toArray();
             foreach ($array as $item) {
                 $text =
@@ -211,7 +211,7 @@ class BotsController extends Controller
 
         if ($command == '/materiais') {
             $bot = Bot::where('token', $token)->firstOrFail();
-            $result = Resource::where('bot_id', session('bot_id'))->get();
+            $result = Resource::where('bot_id', $bot->id)->get();
             $array = $result->toArray();
             foreach ($array as $item) {
                 $text =
