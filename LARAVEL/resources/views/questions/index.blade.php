@@ -14,19 +14,7 @@
                         <a href="{{ url('/questions/create') }}" class="btn btn-success btn-sm" title="Novo Questão">
                             <i class="fa fa-plus" aria-hidden="true"></i> Nova Questão
                         </a>
-                        <div class="pull-right" style="white-space:nowrap">
-                            <form method="GET" action="{{ url('/questions') }}" accept-charset="UTF-8" role="search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="search" placeholder="Pesquisar..." value="{{ request('search') }}">
-                                    <span class="input-group-append">
-                                        <button class="btn btn-secondary" type="submit">
-                                            Pesquisar
-                                        </button>
-                                    </span>
-                                </div>
-                            </form>
-                        </div>
-
+                        
                         <br/>
                         <br/>
                         <div class="table-responsive">

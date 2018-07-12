@@ -14,19 +14,7 @@
                         <a href="{{ url('/bots/create') }}" class="btn btn-success btn-sm" title="Novo Bot">
                             <i class="fa fa-plus" aria-hidden="true"></i> Novo Bot
                         </a>
-                        <div class="pull-right" style="white-space:nowrap">
-                            <form method="GET" action="{{ url('/bots') }}" accept-charset="UTF-8" role="search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="search" placeholder="Pesquisar..." value="{{ request('search') }}">
-                                    <span class="input-group-append">
-                                        <button class="btn btn-secondary" type="submit">
-                                            Pesquisar
-                                        </button>
-                                    </span>
-                                </div>
-                            </form>
-                        </div>
-
+                        
                         <br/>
                         <br/>
                         <div class="table-responsive">
