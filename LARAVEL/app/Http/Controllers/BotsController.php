@@ -141,14 +141,14 @@ class BotsController extends Controller
         return redirect('bots')->with('flash_message', ' deleted!');
     }
 
-    public function webhook($token)
+    public function webhook(Request $request, $token)
     {
+        die('hello');
         $bot = Bot::where('token', $token)->firstOrFail();
         session(['bot_id' => $bot->id]);
         $commands_paths = [
             __DIR__.'/../../app/Commands',
         ];
-        dd($commands_paths);
         try {
             $telegram = new Telegram($token, $bot->username);
             $telegram->addCommandsPaths($commands_paths);

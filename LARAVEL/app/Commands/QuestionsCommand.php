@@ -6,7 +6,7 @@ use Longman\TelegramBot\Commands\UserCommand;
 use Longman\TelegramBot\Request;
 use tb\Question;
 
-class TestCommand extends UserCommand
+class QuestionsCommand extends UserCommand
 {
     protected $name = 'questions';                      // Your command's name
     protected $description = 'Te entrega questões'; // Your command description
