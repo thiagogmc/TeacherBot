@@ -7,7 +7,8 @@
     "require": {
         "php": ">=7.0.0",
         "appzcoder/crud-generator": "^3.0",
-        "doctrine/dbal": "^2.5",
+        "doctrine/common": "2.7.0",
+        "doctrine/dbal": "2.5.13",
         "fideloper/proxy": "~3.3",
         "irazasyed/telegram-bot-sdk": "^3.0",
         "jeroennoten/laravel-adminlte": "^1.23",
