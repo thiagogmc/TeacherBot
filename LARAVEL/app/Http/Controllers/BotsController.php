@@ -187,8 +187,8 @@ class BotsController extends Controller
                     'chat_id' => $chatId,
                     'text' => $text,
                 ]);
-                return;
             }
+            return;
         }
 
         if ($command == '/questoes') {
@@ -205,8 +205,8 @@ class BotsController extends Controller
                     'chat_id' => $chatId,
                     'text' => $text,
                 ]);
-                return;
             }
+            return;
         }
 
         if ($command == '/materiais') {
@@ -222,9 +222,8 @@ class BotsController extends Controller
                     'chat_id' => $chatId,
                     'text' => $text,
                 ]);
-
-                return;
             }
+            return;
         }
         $keyboard = [
             ['/provas', '/questoes', '/materiais']
