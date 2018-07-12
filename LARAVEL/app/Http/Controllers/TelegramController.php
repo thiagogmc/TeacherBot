@@ -10,7 +10,7 @@ class TelegramController extends BaseController
     protected $telegram;
 
     public function __construct() {
-        $this->telegram = new Api('619627999:AAH2j9p8iwJEVl_5IuXvaevPrQB9NjFyWzM');
+        $this->telegram = new Api('559333951:AAH8MmwPo-LEWsXI3UjETfnzAUpMGLSn-oA');
         // dd($this->telegram->getUpdates());
     }
 

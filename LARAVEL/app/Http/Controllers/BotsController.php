@@ -4,15 +4,22 @@ namespace tb\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use tb\Commands\ExamsCommand;
+use tb\Commands\StartCommand;
+use tb\Exam;
 use tb\Http\Requests;
 use tb\Http\Controllers\Controller;
 
 use tb\Bot;
 use Illuminate\Http\Request;
+use tb\Question;
+use tb\Resource;
 use tb\User;
 use Longman\TelegramBot\Telegram;
 use Longman\TelegramBot\Exception\TelegramException;
 use Longman\TelegramBot\Exception\TelegramLogException;
+use Telegram\Bot\Api as TelegramApi;
+use Telegram\Bot\Keyboard\Keyboard;
 
 class BotsController extends Controller
 {
@@ -142,7 +149,7 @@ class BotsController extends Controller
         return redirect('bots')->with('flash_message', ' deleted!');
     }
 
-    public function webhook(Request $request, $token)
+    public function webhook($token)
     {
 //        $bot = Bot::where('token', $token)->firstOrFail();
 //        session(['bot_id' => $bot->id]);
@@ -154,13 +161,80 @@ class BotsController extends Controller
 //            $telegram->addCommandsPaths($commands_paths);
 //            $telegram->handle();
 //        } catch (TelegramException $e) {
-//            Log::error($e);
+//            dd($e);
 //        } catch (TelegramLogException $e) {
 //        // Silence is golden!
 //        // Uncomment this to catch log initialisation errors
 //            echo $e;
 //        }
 
-        die('hello');
+        $telegram = new TelegramApi($token);
+        $updates = $telegram->getWebhookUpdates();
+        $chatId = $updates->getChat()['id'];
+        $command = $updates->getMessage()['text'];
+
+        if ($command == '/provas') {
+            $bot = Bot::where('token', $token)->firstOrFail();
+            $result = Exam::where('bot_id', session('bot_id'))->get();
+            $array = $result->toArray();
+            foreach ($array as $item) {
+                $text =
+                    'Conteúdo: '.$item['content'].chr(10).
+                    'Data: '.$item['date'].chr(10).
+                    'Valor: '.$item['score'].chr(10);
+
+                return $telegram->sendMessage([
+                    'chat_id' => $chatId,
+                    'text' => $text,
+                ]);
+            }
+        }
+
+        if ($command == '/questoes') {
+            $bot = Bot::where('token', $token)->firstOrFail();
+            $result = Question::where('bot_id', session('bot_id'))->get();
+            $array = $result->toArray();
+            foreach ($array as $item) {
+                $text =
+                    'Título: '.$item['name'].chr(10).
+                    'Assunto: '.$item['subject'].chr(10).
+                    'Enunciado: '.$item['statement'].chr(10);
+
+                return $telegram->sendMessage([
+                    'chat_id' => $chatId,
+                    'text' => $text,
+                ]);
+            }
+        }
+
+        if ($command == '/materiais') {
+            $bot = Bot::where('token', $token)->firstOrFail();
+            $result = Resource::where('bot_id', session('bot_id'))->get();
+            $array = $result->toArray();
+            foreach ($array as $item) {
+                $text =
+                    'Título: '.$item['name'].chr(10).
+                    'Conteúdo: '.$item['content'].chr(10);
+
+                return $telegram->sendMessage([
+                    'chat_id' => $chatId,
+                    'text' => $text,
+                ]);
+            }
+        }
+        $keyboard = [
+            ['/provas', '/questoes', '/materiais']
+        ];
+        $reply_markup = Keyboard::make([
+            'keyboard' => $keyboard,
+            'resize_keyboard' => true,
+            'one_time_keyboard' => true
+        ]);
+
+        $response = $telegram->sendMessage([
+            'chat_id' => $chatId,
+            'text' => 'Olá, Escolha seu comando',
+            'reply_markup' => $reply_markup
+        ]);
     }
 }
