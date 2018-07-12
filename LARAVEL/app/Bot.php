@@ -53,7 +53,7 @@ class Bot extends Model
     {
         $apiKey = $request['token'];
         $username = $request['username'];
-        $url = env('APP_URL') . '/bots/' . $apiKey . '/hook/';
+        $url = env('APP_URL') . '/bots/' . $apiKey . '/hook';
 
         try {
             $telegram = new Telegram($apiKey, $username);
