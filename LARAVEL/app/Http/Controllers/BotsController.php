@@ -143,7 +143,6 @@ class BotsController extends Controller
 
     public function webhook(Request $request, $token)
     {
-        die('hello');
         $bot = Bot::where('token', $token)->firstOrFail();
         session(['bot_id' => $bot->id]);
         $commands_paths = [
